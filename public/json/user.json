@@ -1,0 +1,52 @@
+{
+ "version": "1.0",
+ "session": {
+   "newSession": true,
+   "sessionId": "string",
+   "sessionAttributes": {
+     "key": "string value"
+   }
+},
+ "understanding":{
+   "address": "中国,贵州省,遵义市,汇川区,广州路,42号27.725353125006837,106.93644180169895",
+   "query":"我要用理财卡分期还款200块",
+   "params":{ 
+       "payment_amount":[
+           {
+               "raw_data":"200块",
+               "norm_value":{
+                   "unit":"元",
+                   "type":"point",
+                   "content":[
+                       [
+                           200
+                       ]
+                   ],
+                   "status":"valid"
+               },
+               "status":"valid"
+           }
+       ]
+   },
+   "intent":"pay_bill",
+   "output":"lite",
+   "domain":"AutoRepay",
+   "access_token":"eb12f25040dda25e1e028f832aba57ca",
+   "device_id":"eb12f25040dda25e1e028f832aba57ca",
+   "appkey":"7E1C68619429F9677853E862CC9DC667",
+   "location":{
+       "country":"中国",
+       "province":"贵州省",
+       "lng":106.93644180169895,
+       "city":"遵义市",
+       "street":"广州路",
+       "sublocality":"汇川区",
+       "street_number":"42号",
+       "lat":27.725353125006837
+   },
+   "msg_id":"86fb7eb8-1e4c-2345-83e8-1be5a66fd3d1",
+   "status":"SUCCESS"
+ },
+ "context": {
+ }
+}

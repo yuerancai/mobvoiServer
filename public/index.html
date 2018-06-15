@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="http://localhost:3000/" method="POST">
+    First Name: <input type="text" name="first_name">  <br>
+
+    Last Name: <input type="text" name="last_name">
+    <input type="submit" value="Submit">
+</form>
+</body>
+<script>
+    var xhr = new XMLHttpRequest();
+    var url = "http://localhost:3000/process_post";
+    xhr.open("POST",url,true);
+    xhr.setRequestHeader("Content-Type","application/json");
+    xhr.onreadystatechange = function () {
+        if(xhr.readyState === 4 && xhr.status ===200){
+            var json = JSON.parse(xhr.responseText);
+            console.log(json);
+        }
+    };
+    var data = JSON.stringify({
+        "status": "SUCCESS",
+        "query": "跟我说",
+        "meta": {
+        "user_id": "abc1993",
+            "msg_id": "tttttttt",
+            "time": "2015-11-18 12:32:23",
+            "type": "dialogue_output",
+            "address": "中国,北京市,北京,海淀区,海淀北二街,10号,39.989479707131,116.31568061429",
+            "user": "assistant",
+            "appkey": "273A0728A63A756B8E52C767F875991B",
+            "polaris": true,
+            "output": "lite",
+            "pre_search":false
+        }
+    });
+    xhr.send(data);
+
+</script>
+</html>

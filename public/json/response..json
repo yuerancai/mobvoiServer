@@ -1,0 +1,68 @@
+{
+ "version": "string",
+ "status": string,// "success" or "error" or “not_supported”,//warning: 下划线命名法
+ "sessionAttributes": {//用于更新session，可以为空JSON
+   "key": "value"
+ },
+ “sessionExpireTime”:”int”//可选字段，单位为秒，不指定时默认900也即15min，最大3600
+ "context":{}//用于更新context，可以为空
+ "shouldEndSession":true//是否结束当前session，如果否，则在LU时一直进入当前场景
+ "response": {//该部分格式与TCP Webhook中相同
+           "status": string,// "success" or "error"
+    "control": {
+        "voiceControl": string//枚举值默认”end”不开启自动聆听;“start_voice”: 开启聆听        "execType":string//枚举值：show_onebox:展示对话文本以及Onebox 数据; 
+                                                      //text:仅展示文本;
+                       //voice_action:展示对话文本以及执行client action
+    //warning：返回协议中其他字段都为小驼峰命名法，唯有
+   //枚举字段的取值为下划线命名法。
+voiceOption:{
+silenceTime://下次聆听的静音检测时间，类型为int，仅当voiceContraol为
+start_voice时包含
+stateActionMap:{//不同的前端状态下采取的action
+"noSpeech":{//经过maxSilenceTime后前端依然没有检测到语音
+输入时的action
+"type":"textQuery"//枚举类型，textQuery, text与
+webhook，其中textQuery时，前端构造特殊
+query发送到m.mobvoi.com实现一些特殊的后端
+命令；text直接播报相应的tts，webhook则以get
+调用相应的url。
+"textQuery":“string”//可选值，类型为textQuery时前端填到
+query字段中的内容
+“url”:“string”//可选值，类型为webhook时前端请求的url
+“text”:”string”//可选值，类型为text时播报的tts
+}
+}
+}    
+},
+    //以上为必选项字段，包括内嵌的execType等。clientData和clientAction为某些条件下 
+//必选的字段, 它们的格式主要是为了搭配问问相关的SDK使用，如果开发者完全自己
+//实现前端的数据解析逻辑，则clientData和clientAction中的具体格式可以自定义，否
+//则需要严格按照此格式进行实现
+"languageOutput":{//execType为“text”时必选
+        "displayText": 非空字符串
+        "tts": 非空字符串
+    },
+    "clientData": { //execType为"show_onebox"时必选
+        “status”:”success”,
+        “data”:[]
+        “type”:””//“string”
+        “dataSummary”:{}//JSONObject
+    },
+    ”clientAction":{//execType为"voice_action"时必选
+action:”com.mobvoi.DO_SOMETHING”,
+        auto:false,
+        extras:{}//参数列表
+    },
+    “innerExecution”：{//execType为 "inner_execute "时必选
+                       "url "： "string ",
+           "systemAction": { // 系统动作，主要参考字段
+   "auto": true,
+   "action": "com.mobvoi.semantic.action.REMINDER.SET",  // action名称
+   "extras": {// 执行的action的参数
+     "time": "明天早晨8点::1491004800000",
+     "content": "睡觉::睡觉"
+   }
+    }
+    }
+       }
+  }
